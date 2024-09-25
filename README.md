@@ -36,4 +36,4 @@ Model Training: Train the model using the dataset and split it into training and
 Evaluation: Use metrics like accuracy, precision, recall, and F1-score to evaluate the model’s performance.
 Optimization: Fine-tune the model using hyperparameter tuning or cross-validation.
 
-some output: ![Screenshot (139)](https://github.com/user-attachments/assets/49bce348-4a20-4c7b-8d48-02db60804cd4)
+some output: ![Screenshot (139)](https://github.com/user-attachments/assets/f73a71eb-93ac-4278-a776-3ccab55c0ee0)
