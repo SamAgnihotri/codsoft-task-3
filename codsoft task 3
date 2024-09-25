@@ -1,0 +1,103 @@
+import pandas as pd
+import  numpy as np
+import os
+import matplotlib.pyplot as plt
+import seaborn as sns
+df=pd.read_csv('iris.csv')
+df.head()
+df.tail()
+df.describe()
+df.info()
+df['species'].value_counts()
+df.isnull().sum()
+df['sepal_length'].hist()
+plt.title('Sepal Length')
+df['sepal_width'].hist()
+plt.title('Sepal Width')
+df['petal_length'].hist()
+plt.title('Petal Length')
+df['petal_width'].hist()
+plt.title('Petal Width')
+colors=['yellow','green','blue']
+species=['Iris-setosa','Iris-versicolor','Iris-virginica']
+for i in range(3):
+    x=df[df['species']==species[i]]
+    plt.scatter(x['sepal_length'],x['sepal_width'],c=colors[i],label=species[i])
+plt.xlabel('sepal_length')
+plt.ylabel('sepal_width')
+plt.legend()
+for i in range(3):
+    x=df[df['species']==species[i]]
+    plt.scatter(x['petal_length'],x['petal_width'],c=colors[i],label=species[i])
+plt.xlabel('petal_length')
+plt.ylabel('petal_width')
+plt.legend()
+for i in range(3):
+    x=df[df['species']==species[i]]
+    plt.scatter(x['sepal_length'],x['petal_length'],c=colors[i],label=species[i])
+plt.xlabel('sepal_length')
+plt.ylabel('petal_length')
+plt.legend()
+for i in range(3):
+    x=df[df['species']==species[i]]
+    plt.scatter(x['sepal_width'],x['petal_width'],c=colors[i],label=species[i])
+plt.xlabel('sepal_width')
+plt.ylabel('petal_width')
+plt.legend()
+df.corr()
+corr=df.corr()
+fig, ax=plt.subplots(figsize=(5,4))
+sns.heatmap(corr,annot=True,ax=ax,cmap='crest')
+from sklearn.preprocessing import LabelEncoder
+le=LabelEncoder()
+df['species']=le.fit_transform(df['species'])
+df.head()
+from sklearn.model_selection import train_test_split
+X=df.drop(columns=['species'])
+Y=df['species']
+X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=0.30)
+from sklearn.linear_model import LogisticRegression
+model=LogisticRegression(solver='lbfgs', max_iter=1000)
+model.fit(X_train,Y_train)
+print('Accuracy',model.score(X_test,Y_test)*100)
+from sklearn.neighbors import KNeighborsClassifier
+model=KNeighborsClassifier()
+model.fit(X_train,Y_train)
+print('Accuracy',model.score(X_test,Y_test)*100)
+from sklearn.tree import DecisionTreeClassifier
+model=DecisionTreeClassifier()
+model.fit(X_train,Y_train)
+print('Accuracy',model.score(X_test,Y_test)*100)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
